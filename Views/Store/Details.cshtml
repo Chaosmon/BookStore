@@ -1,0 +1,60 @@
+﻿@model BookStore.Models.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="row justify-content-center align-items-center">
+    
+    <div class="col-5">
+        <div class="border border-dark rounded p-3">
+            <h4>Book Details</h4>
+            <hr />
+            <table class="table">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <td>@Html.DisplayFor(model => model.Title)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Author)</th>
+                    <td>@Html.DisplayFor(model => model.Author)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Language)</th>
+                    <td>@Html.DisplayFor(model => model.Language)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ISBN)</th>
+                    <td>@Html.DisplayFor(model => model.ISBN)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.DatePublished)</th>
+                    <td>@Html.DisplayFor(model => model.DatePublished)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <td>@Html.DisplayFor(model => model.Price)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <td>@Html.DisplayFor(model => model.Description)</td>
+                </tr>
+                <!-- Add similar rows for other book details -->
+            </table>
+            <div>
+                <a asp-action="Index" class="btn btn-warning">
+                    <i class="fa-solid fa-arrow-left"></i> Back
+                </a>
+                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-primary store-btn float-right mr-5">
+                    Add to cart <i class="fa-solid fa-cart-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <img src="@Model.ImageUrl" class="w-100" />
+    </div>
+</div>
