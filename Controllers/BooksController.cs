@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using BookStore.Data;
 using BookStore.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace BookStore.Controllers
 {
@@ -55,16 +57,45 @@ namespace BookStore.Controllers
         // POST: Books/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,Title,Description,Language,ISBN,DatePublished,Price,Author,ImageUrl")] Book book)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(book);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(book);
+        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,Language,ISBN,DatePublished,Price,Author,ImageUrl")] Book book)
+        public async Task<IActionResult> Create([Bind("Id,Title,Description,Language,ISBN,DatePublished,Price,Author,ImageUrl")] Book book, IFormFile imageFile)
         {
             if (ModelState.IsValid)
             {
+                // Xử lý tệp hình ảnh ở đây
+                if (imageFile != null && imageFile.Length > 0)
+                {
+                    // Lưu tệp hình ảnh vào thư mục hoặc lưu vào cơ sở dữ liệu tùy thuộc vào yêu cầu của bạn
+                    // Ví dụ: Lưu vào thư mục wwwroot/images
+                    var imagePath = Path.Combine("wwwroot", "images", imageFile.FileName);
+
+                    using (var stream = new FileStream(imagePath, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+
+                    // Gán đường dẫn của hình ảnh vào trường ImageUrl của đối tượng Book
+                    book.ImageUrl = $"/images/{imageFile.FileName}";
+                }
+
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(book);
         }
 
