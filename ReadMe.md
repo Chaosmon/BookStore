@@ -21,7 +21,8 @@ You need to reinstall the ConnectionStrings configuration in the appsettings.jso
 
 3. password
 
-4. Navigate to `Tools` in the Visual Studio navbar, and select `NuGet Package Manager` -> `Package Manager Console`.
+4. Navigate to `Tools` in the Visual Studio navbar
+   Select `NuGet Package Manager` -> `Package Manager Console`.
 
 3. In the console window, type `update-database`.
 ```
