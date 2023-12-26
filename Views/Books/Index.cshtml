@@ -16,12 +16,24 @@
     }
 }
 
+<style>
+    .bordered-table {
+        border: 1px solid #000101; /* Màu và độ dày của border */
+        border-collapse: collapse; /* Để tránh hiện tượng gãy đứt border */
+    }
+
+        .bordered-table th, .bordered-table td {
+            border: 1px solid #000101; /* Màu và độ dày của border */
+            padding: 8px; /* Để tạo khoảng cách giữa nội dung và border */
+        }
+</style>
+
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create" class="btn btn-primary"><i class="fa-solid fa-book"></i> Add Book</a>
 </p>
-<table class="table">
+<table class="table mt-4 bordered-table">
     <thead>
         <tr>
             <th>
@@ -70,10 +82,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
-                <td>
+                <td class="text-center">
                     <i class="@HasImage(item)"></i>
                 </td>
-                <td>
+                <td class="text-center">
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"><i class="fa-solid fa-circle-info"></i></a>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>

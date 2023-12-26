@@ -8,7 +8,21 @@
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/myCss.css" />
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            /* background-image: url(''); */
+            background-color: #e6f7ff;
+            background-size: cover;
+        }
+
+        footer {
+            background-color: #fff; /* Màu nền cho footer */
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -23,7 +37,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Store" asp-action="Index">Home</a>
                         </li>
-                        
+
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">

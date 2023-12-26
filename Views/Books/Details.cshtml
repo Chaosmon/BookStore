@@ -4,12 +4,26 @@
     ViewData["Title"] = "Details";
 }
 
+<style>
+    .bordered-definition-list dt,
+    .bordered-definition-list dd {
+        border: 1px solid #000101; /* Màu và độ dày của border */
+        padding: 10px; /* Để tạo khoảng cách giữa nội dung và border */
+        margin-bottom: 10px; /* Để tạo khoảng cách giữa mỗi cặp `dt` và `dd` */
+        background-color: #e6ffee;
+    }
+
+    .bordered-definition-list dt {
+        background-color: #f5f5f5; /* Màu nền cho `dt` */
+    }
+</style>
+
 <h1>Details</h1>
 
 <div>
     <h4>Book</h4>
     <hr />
-    <dl class="row">
+    <dl class="row bordered-definition-list">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
         </dt>

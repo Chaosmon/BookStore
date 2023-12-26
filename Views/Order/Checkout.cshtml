@@ -1,11 +1,22 @@
 ﻿@model Order
 
-<form asp-action="Checkout" method="post" class="form-horizontal" role="form">
+@* <form asp-action="Checkout" method="post" class="form-horizontal" role="form">
     <h4>Please confirm your purchase</h4>
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn btn-primary" value="Complete Order" />
+        </div>
+    </div>
+</form> *@
+
+<form asp-action="Checkout" method="post" class="form-horizontal" role="form">
+    <h4 class="text-center mt-5">Please confirm your purchase</h4>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group text-center">
+        <div class="col-md-12">
             <input type="submit" class="btn btn-primary" value="Complete Order" />
         </div>
     </div>
