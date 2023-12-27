@@ -59,14 +59,14 @@ namespace BookStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Description,Language,ISBN,DatePublished,Price,Author,ImageUrl")] Book book)
         {
+            // Kiểm tra nếu ImageUrl không rỗng và không bắt đầu bằng "/images/", thêm "/images/" vào đầu
+            if (!string.IsNullOrEmpty(book.ImageUrl) && !book.ImageUrl.StartsWith("/images/"))
+            {
+                book.ImageUrl = "/images/" + book.ImageUrl.TrimStart('/');
+            }
+
             if (ModelState.IsValid)
             {
-                // Kiểm tra nếu ImageUrl không bắt đầu bằng "/images/" thì thêm "/images/" vào đầu
-                if (!book.ImageUrl.StartsWith("/images/"))
-                {
-                    book.ImageUrl = "/images/" + book.ImageUrl;
-                }
-
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -100,6 +100,12 @@ namespace BookStore.Controllers
             if (id != book.Id)
             {
                 return NotFound();
+            }
+
+            // Kiểm tra nếu ImageUrl không rỗng và không bắt đầu bằng "/images/", thêm "/images/" vào đầu
+            if (!string.IsNullOrEmpty(book.ImageUrl) && !book.ImageUrl.StartsWith("/images/"))
+            {
+                book.ImageUrl = "/images/" + book.ImageUrl.TrimStart('/');
             }
 
             if (ModelState.IsValid)
