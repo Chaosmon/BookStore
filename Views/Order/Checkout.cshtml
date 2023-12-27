@@ -1,5 +1,6 @@
 ﻿@model Order
 
+@{ #region old
 @* <form asp-action="Checkout" method="post" class="form-horizontal" role="form">
     <h4>Please confirm your purchase</h4>
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -10,6 +11,7 @@
         </div>
     </div>
 </form> *@
+#endregion}
 
 <form asp-action="Checkout" method="post" class="form-horizontal" role="form">
     <h4 class="text-center mt-5">Please confirm your purchase</h4>

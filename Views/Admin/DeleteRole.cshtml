@@ -1,8 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @model IdentityRole
 
-<h3>You are about to delete the role "@Model.Name"</h3>
-<h6>This action can't be undone</h6>
+@* <h3>You are about to delete the role "@Model.Name"</h3> *@
+<h1>You are about to delete the role "<span class="text-primary">@Model.Name</span>"</h1>
+<h2 class="text-danger">This action can't be undone</h2>
 
 <div asp-validation-summary="All" class="text-danger"></div>
 
