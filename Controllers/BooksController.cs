@@ -61,6 +61,12 @@ namespace BookStore.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Kiểm tra nếu ImageUrl không bắt đầu bằng "/images/" thì thêm "/images/" vào đầu
+                if (!book.ImageUrl.StartsWith("/images/"))
+                {
+                    book.ImageUrl = "/images/" + book.ImageUrl;
+                }
+
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
